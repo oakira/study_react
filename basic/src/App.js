@@ -1,26 +1,34 @@
-import React from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
-import { Home } from "./Home"
-import { Chapter3 } from "./Chapter3"
+import React, { Component } from 'react';
+import Rect from './Rect';
+import './App.css';
 
-export class App extends React.Component {
+class App extends Component {
+	msgStyle = {
+		fontSize: "24px",
+		color: "#900",
+		margin: "20px 0px",
+		padding: "5px",
+		borderBottom: "2px solid #900",
+	}
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			msg: 'Hello',
+		}
+		let timer = setInterval(() => {
+			this.setState((state) => ({
+				msg: state.msg + "!",
+			}));
+		}, 10000)
+	}
+
 	render() {
-		return (
-			<div className="App">
-				<BrowserRouter>
-					<nav>
-						<ul>
-							<li><Link to="/">Home</Link></li>
-							<li><Link to="/chapter3">Chapter3</Link></li>
-						</ul>
-					</nav>
-					<div>
-						<Route exact path='/' component={Home} />
-						<Route path='/chapter3' component={Chapter3} />
-					</div>
-				</BrowserRouter>
-			</div>
-		);
+		return <div>
+			<h1>React</h1>
+			<p style={this.msgStyle}>{this.state.msg}</p>
+			<p style={this.msgStyle}>{this.props.msg}</p>
+		</div>;
 	}
 }
 

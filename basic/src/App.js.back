@@ -1,0 +1,27 @@
+import React from 'react'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { Home } from "./Home"
+import { Link2 } from "./Link2"
+
+export class App extends React.Component {
+	render() {
+		return (
+			<div className="App">
+				<BrowserRouter>
+					<nav>
+						<ul>
+							<li><Link to="/">Home</Link></li>
+							<li><Link to="/link2">Link2</Link></li>
+						</ul>
+					</nav>
+					<div>
+						<Route exact path='/' component={Home} />
+						<Route path='/link2' component={Link2} />
+					</div>
+				</BrowserRouter>
+			</div>
+		);
+	}
+}
+
+export default App;
